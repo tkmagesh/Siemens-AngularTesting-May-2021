@@ -3,7 +3,7 @@ import { GreeterService } from './greeter.service';
 import { LoggerService } from './logger.service';
 import { TimeService } from './time.service';
 
-fdescribe("Greeter Service (DI) (3) ", () => {
+describe("Greeter Service (DI) (3) ", () => {
     let greeter, ls, ts
     beforeEach(() => {
         ts = jasmine.createSpyObj("TimeService", ["getCurrent"]);
