@@ -1,0 +1,58 @@
+Visual Studio Code 
+Chrome Browser
+Node.js
+
+Name
+Primary Skillset
+Experience Angular 
+Is Angular Testing new for you?
+If not what is your specific expectation from the training?
+
+Why Angular?
+    To build "maintainable" applications
+
+Single Responsibility Principle
+Open Closed Principle
+Dependency Inversion Principle
+
+Agile Principles Patterns and Practices in .NET 
+    by Robert.C.Martin
+
+Angular Building Blocks
+    Components
+        User Interaction Responsibility
+            Presentation
+            Interaction Logic
+            State
+
+    Services
+        Non UI logic
+
+    Modules
+        Application Registry for entities
+
+    Directives
+        DOM manipulation
+
+    Pipes
+        Data transformation for presentation
+
+
+Framework
+Library
+
+Maintainable == Testable
+
+
+fn(....) => result
+
+function fn(){
+    if(){
+        if(){
+            if(){
+
+            }
+        }
+    }
+}
+
