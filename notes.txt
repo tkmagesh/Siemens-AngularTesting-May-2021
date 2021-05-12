@@ -61,3 +61,11 @@ jasmine
 
     matchers
         toBe
+
+
+Write a Greeter service that will greet the given greet message
+    if the time of the day is from 00:00 Hrs to 12:00 
+        Hi <name>, Good Morning!
+    else
+        Hi <name>, Good Day!
+
