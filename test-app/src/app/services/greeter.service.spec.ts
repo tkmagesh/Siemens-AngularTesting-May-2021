@@ -77,6 +77,7 @@ describe("Greeter Service", () => {
     });
 }) */
 
+/* 
 class FakeLoggerService {
     isLogCalled : boolean = false;
     msg : string = '';
@@ -84,7 +85,8 @@ class FakeLoggerService {
         this.isLogCalled = true;
         this.msg = msg;
     }
-}
+} 
+*/
 
 describe("Greeter Service", () => {
     it("Should greet the user 'Good Morning' when greeted before 12 hours", () => {
@@ -118,7 +120,7 @@ describe("Greeter Service", () => {
         //assert
             expect(result).toBe(expectedResult)
     });
-    it("Should log a message when greeting an user", () => {
+    /* it("Should log a message when greeting an user", () => {
         //arrange
             const ts = jasmine.createSpyObj("TimeService", {
                     getCurrent : new Date("10-May-2021 9:00:00")
@@ -133,5 +135,20 @@ describe("Greeter Service", () => {
         //assert
             expect(ls.isLogCalled).toBeTrue()
             expect(ls.msg).toBe(`user Magesh greeted`)
+    }) */
+    it("Should log a message when greeting an user", () => {
+        //arrange
+            const ts = jasmine.createSpyObj("TimeService", {
+                    getCurrent : new Date("10-May-2021 9:00:00")
+                }),
+                ls = jasmine.createSpyObj("LoggerService", ["log"]),
+                greeter = new GreeterService(ts, ls),
+                name = "Magesh";
+                
+        //act
+            var result = greeter.greet(name);
+
+        //assert
+            expect(ls.log).toHaveBeenCalledOnceWith(`user Magesh greeted`)
     })
 })
