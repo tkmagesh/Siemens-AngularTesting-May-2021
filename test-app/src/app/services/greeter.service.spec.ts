@@ -77,7 +77,7 @@ describe("Greeter Service", () => {
     });
 }) */
 
-/* 
+ 
 class FakeLoggerService {
     isLogCalled : boolean = false;
     msg : string = '';
@@ -86,7 +86,7 @@ class FakeLoggerService {
         this.msg = msg;
     }
 } 
-*/
+
 
 describe("Greeter Service", () => {
     it("Should greet the user 'Good Morning' when greeted before 12 hours", () => {
