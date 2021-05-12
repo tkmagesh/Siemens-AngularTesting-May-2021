@@ -16,9 +16,9 @@ import { TimeService } from './services/time.service';
     BrowserModule
   ],
   providers: [
-    GreeterService,
+    /* GreeterService,
     LoggerService,
-    TimeService
+    TimeService */
   ],
   bootstrap: [GreeterComponent]
 })
