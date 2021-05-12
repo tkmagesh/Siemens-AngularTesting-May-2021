@@ -8,6 +8,7 @@ import { TrimTextPipe } from './pipes/trimText.pipe';
 import { GreeterService } from './services/greeter.service';
 import { LoggerService } from './services/logger.service';
 import { TimeService } from './services/time.service';
+import * as moment from 'moment';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TimeService } from './services/time.service';
     /* GreeterService,
     LoggerService,
     TimeService */
+     { provide: 'MOMENT', useValue : moment}
   ],
   bootstrap: [GreeterComponent]
 })

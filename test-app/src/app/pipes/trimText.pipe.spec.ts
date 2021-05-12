@@ -1,8 +1,8 @@
 import { TestBed } from "@angular/core/testing"
 import { TrimTextPipe } from "./trimText.pipe"
 
-fdescribe("TrimText pipe", () => {
-    fit("Short strings are returned as they are", () => {
+describe("TrimText pipe", () => {
+    it("Short strings are returned as they are", () => {
         const trimTextPipe = new TrimTextPipe();
         expect(trimTextPipe).toBeDefined()
 
@@ -13,7 +13,7 @@ fdescribe("TrimText pipe", () => {
 
         expect(result).toBe(expectedResult)
     })
-     fit("Long strings are truncated", () => {
+     it("Long strings are truncated", () => {
         const trimTextPipe = new TrimTextPipe();
         expect(trimTextPipe).toBeDefined()
 
