@@ -69,3 +69,18 @@ Write a Greeter service that will greet the given greet message
     else
         Hi <name>, Good Day!
 
+
+Synchronous Operation
+    Wait for the operation to complete
+
+Asynchronous Operation
+    Do not wait for the operation to complete
+
+Handling the async operations
+    callbacks
+    events
+    promises
+    async await
+    observables
+    
+
