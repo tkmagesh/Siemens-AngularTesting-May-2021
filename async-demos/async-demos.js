@@ -62,5 +62,26 @@
 
     window['addAsyncPromiseClient'] = addAsyncPromiseClient;
 
+    function batchAddAsyncPromiseClient(){
+        const start = new Date()
+        console.log(`[@client] triggering the service`)
+        const p1 = addAsyncPromise(10,20);
+        p1.then(function(result){
+            console.log(`[@client] result = ${result}`)
+        });
+
+        console.log(`[@client] triggering the service`)
+        const p2 =  addAsyncPromise(100,200);
+        p2.then(function(result){
+            console.log(`[@client] result = ${result}`)
+        });
+        
+        Promise.all([p1, p2])
+            .then(() => {
+                console.log('Time taken = ', (new Date()) - start);
+            });
+    }
+
+    window['batchAddAsyncPromiseClient'] = batchAddAsyncPromiseClient;
 
 })()
