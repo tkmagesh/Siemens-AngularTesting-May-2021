@@ -75,7 +75,7 @@
         p2.then(function(result){
             console.log(`[@client] result = ${result}`)
         });
-        
+
         Promise.all([p1, p2])
             .then(() => {
                 console.log('Time taken = ', (new Date()) - start);
@@ -83,5 +83,18 @@
     }
 
     window['batchAddAsyncPromiseClient'] = batchAddAsyncPromiseClient;
+
+    function fn(){
+        console.log('script start');
+        setTimeout(function(){
+            console.log('setTimeout')
+        },0);
+        Promise.resolve().then(() => {
+            console.log('promise1')
+        }).then(() => {
+            console.log('promise2')
+        });
+        console.log('script end')
+    }
 
 })()

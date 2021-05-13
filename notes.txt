@@ -82,5 +82,27 @@ Handling the async operations
     promises
     async await
     observables
-    
+        = inverse of enumerable
+            enumerable = lazy iterable (generator in javascript)
+
+        stream of data (events)
+
+    Source of events in a web application
+        User Interaction (stream)
+        Timer (stream)
+        AJAX (singular)
+        Web Socket (stream)
+        Server Sent Events (stream)
+
+Testing async operation
+
+    Macrotask & Microtask
+    Macrotask (setTimout, setInterval, setImmediate)
+        APIs for flusing macrotasks - flush, tick
+
+    Microtask (promise, observables, process.nextTick)
+        APIs for flushing microtasks - flushMicrotask
+        
+    A macrotask can result in multiple microtasks
+    The microtasks queue of one macrotask has to cleared to execute the next macrotask
 

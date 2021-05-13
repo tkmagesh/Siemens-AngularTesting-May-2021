@@ -1,4 +1,4 @@
-import { fakeAsync, flush } from "@angular/core/testing";
+import { fakeAsync, flush, flushMicrotasks } from "@angular/core/testing";
 
 fdescribe("Async Operations", () => {
     function addSync(x,y){
@@ -52,5 +52,32 @@ fdescribe("Async Operations", () => {
         flush();
         expect(test1).toBeTrue()
         expect(test2).toBeTrue()
+    }))
+
+    it("tesing a promise", fakeAsync(() => {
+        let test1 = false;
+        let p = new Promise((resolve, reject)=>{
+            test1 = true;
+            resolve(100)
+        })
+        expect(test1).toBe(true)
+    }));
+
+    it("testing time interval based async operations", fakeAsync(() => {
+        let counter = 0;
+
+        Promise.resolve()
+            .then(() => {
+                counter = 10;
+                setTimeout(() => {
+                    counter += 1
+                }, 2000)
+            });
+        
+        expect(counter).toBe(0);
+        flushMicrotasks(); //=> waits for microtasks to be completed
+        expect(counter).toBe(10);
+        flush(); //=> waits for all the macrotasks to be completed
+        expect(counter).toBe(11);
     }))
 })
