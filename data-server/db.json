@@ -29,6 +29,12 @@
       "name": "Server communication failure",
       "isClosed": false,
       "createdAt": "2021-05-13T10:33:28.060Z"
+    },
+    {
+      "id": 7,
+      "name": "Application is very slow",
+      "isClosed": false,
+      "createdAt": "2021-05-13T12:14:56.026Z"
     }
   ],
   "projects": [

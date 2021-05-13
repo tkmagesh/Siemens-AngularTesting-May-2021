@@ -20,7 +20,9 @@ import { ClosedCountPipe } from "./pipes/closedCount.pipe";
         CommonModule
     ],
     exports : [
-        BugTrackerComponent
+        BugTrackerComponent,
+        BugEditComponent,
+        BugStatsComponent
     ]
 })
 export class BugTrackerModule{
