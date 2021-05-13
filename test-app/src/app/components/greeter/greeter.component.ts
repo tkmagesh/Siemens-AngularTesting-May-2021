@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { GreeterService } from '../../services/greeter.service';
 import * as moment from 'moment';
 
+import { BugApiService } from "../../apiServices/bugApi.service";
+
 @Component({
     selector : 'app-greeter',
     templateUrl : 'greeter.component.html'
@@ -22,7 +24,7 @@ export class GreeterComponent{
     ];
     greetMsg : string = '';
     updatedTime : Date;
-    constructor(private greeterService : GreeterService){
+    constructor(private greeterService : GreeterService, private bugApi : BugApiService){
 
     }
     onBtnGreetClick(){
@@ -35,5 +37,11 @@ export class GreeterComponent{
     getFormattedDate(dt : Date) : string {
         console.log('getFormattedDate invoked');
         return moment(dt).fromNow()
+    }
+
+    onBtnGetBugsClick(){
+        this.bugApi
+            .getAll()
+            .subscribe(bugs => console.table(bugs))
     }
 }
