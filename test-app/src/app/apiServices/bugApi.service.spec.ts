@@ -2,6 +2,7 @@ import { TestBed } from "@angular/core/testing"
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { BugApiService } from "./bugApi.service"
+import { bugs as mockBugs } from '../mock-data/bugs';
 
 fdescribe("BugApi Service", () => {
     let httpTestingController, bugApi;
@@ -34,26 +35,75 @@ fdescribe("BugApi Service", () => {
 
         const req = httpTestingController.expectOne('http://localhost:3000/bugs');
         expect(req.request.method).toBe('GET');
-        req.flush([
-            {
-                "id": 1,
-                "name": "Data integrity checks failed",
-                "isClosed": true,
-                "createdAt": "2019-09-27T06:34:45.852Z"
-            },
-            {
-                "id": 2,
-                "name": "Server communication failure",
-                "createdAt": "2020-11-26T11:17:31.342Z",
-                "isClosed": false
-            },
-            {
-                "id": 3,
-                "name": "Salary not credited",
-                "createdAt": "2020-11-26T11:30:23.139Z",
-                "isClosed": false
-                }
-        ]);
-        
+        req.flush(mockBugs);
+    });
+
+    it("Should make POST requests when saving a bug for bugs with id 0", () => {
+        const testBugData = {
+            id : 0,
+            name : 'Dummy Bug',
+            isClosed : false,
+            createdAt : new Date()
+        };
+        bugApi
+            .save(testBugData)
+            .subscribe(newBug => {
+                expect(newBug).toBeTruthy();
+                expect(newBug.id).toBe(100);
+            });
+
+        var req = httpTestingController.expectOne('http://localhost:3000/bugs');
+        expect(req.request.method).toBe('POST');
+        req.flush({
+            id : 100,
+            name : 'Dummy Bug',
+            isClosed : false,
+            createdAt : new Date()
+        });
+    })
+
+    it("Should make PUT requests when saving a bug for bugs with non zero id", () => {
+        const testBugData = {
+            id : 100,
+            name : 'Dummy Bug',
+            isClosed : false,
+            createdAt : new Date()
+        };
+        bugApi
+            .save(testBugData)
+            .subscribe(newBug => {
+                expect(newBug).toBeTruthy();
+                expect(newBug.id).toBe(100);
+            });
+
+        var req = httpTestingController.expectOne('http://localhost:3000/bugs/100');
+        expect(req.request.method).toBe('PUT');
+        req.flush({
+            id : 100,
+            name : 'Dummy Bug',
+            isClosed : false,
+            createdAt : new Date()
+        });
+    });
+
+    it("Should throw an error when deleting a bug that doesn't exist", () => {
+        const bugToRemove = {
+            id : 300,
+            name : 'Dummy Bug',
+            isClosed : false,
+            createdAt : new Date()
+        };
+        bugApi
+            .remove(bugToRemove)
+            .subscribe( bug => {
+                //verify the success criteria
+            }, err => {
+                expect(err).toBeTruthy();
+                expect(err.error.type).toBe('Bug does not exist');
+            });
+
+        const req = httpTestingController.expectOne('http://localhost:3000/bugs/300')
+        expect(req.request.method).toBe('DELETE');
+        req.error(new ErrorEvent("Bug does not exist"));
     })
 })
