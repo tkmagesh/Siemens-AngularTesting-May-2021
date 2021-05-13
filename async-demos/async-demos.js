@@ -97,4 +97,55 @@
         console.log('script end')
     }
 
+    function divide(x,y) {
+        if (y == 0){
+            throw new Error('Divisor cannot be 0')
+        }
+        return x / y;
+    }
+
+    function divideClient(x,y){
+        try{
+            var result = divide(x,y);
+            console.log(`result = ${result}`);
+        } catch (err){
+            console.log('something went wrong!');
+            console.log(err);
+        }
+    }
+
+    window['divideClient'] = divideClient
+
+   /*  function divideAsync(x,y, callback) {
+        setTimeout(function(){
+            if (y == 0){
+                throw new Error('Divisor cannot be 0')
+            }
+            callback(x / y);
+        }, 3000)
+    } */
+
+    function divideAsync(x,y, callback) {
+        setTimeout(function(){
+            if (y == 0){
+                return callback(new Error('Divisor cannot be 0'), null)
+            }
+            return callback(null, x / y);
+        }, 3000)
+    } 
+
+    function divideAsyncClient(x,y){
+        divideAsync(x,y, (err, result) => {
+            if (err){
+                console.log('something went wrong!');
+                console.log(err);
+                return;
+            }
+            console.log(`result = ${result}`);
+        });
+        console.log('END of divideAsyncClient');
+    }
+
+    window['divideAsyncClient'] = divideAsyncClient
+
 })()
