@@ -7,12 +7,6 @@
       "createdAt": "2019-09-27T06:34:45.852Z"
     },
     {
-      "id": 2,
-      "name": "Server communication failure",
-      "createdAt": "2020-11-26T11:17:31.342Z",
-      "isClosed": false
-    },
-    {
       "id": 3,
       "name": "Salary not credited",
       "createdAt": "2020-11-26T11:30:23.139Z",
@@ -29,6 +23,12 @@
       "name": "Cypress is not working",
       "isClosed": false,
       "createdAt": "2021-04-06T11:57:25.988Z"
+    },
+    {
+      "id": 6,
+      "name": "Server communication failure",
+      "isClosed": false,
+      "createdAt": "2021-05-13T10:33:28.060Z"
     }
   ],
   "projects": [
