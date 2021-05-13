@@ -1,0 +1,8 @@
+
+<h3>Greeter</h3>
+<hr>
+<label for="">User Name :</label>
+<input type="text" (input)="username = $any($event.target).value">
+<span> [ {{username.length}} ] </span>
+<input type="button" value="Greet" (click)="onBtnGreetClick()">
+<div class="message">{{greetMsg}}</div>

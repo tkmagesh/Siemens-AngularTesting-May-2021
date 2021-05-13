@@ -17,6 +17,7 @@ import { ClosedCountPipe } from './bug-tracker/pipes/closedCount.pipe';
 import { BugOperationsService } from './bug-tracker/services/bugOperations.service';
 import { BugStorageService } from './bug-tracker/services/bugStorage.service';
 import { BugApiService } from './bug-tracker/services/bugApi.service';
+import { GreeterComponent } from './greeter/greeter.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BugApiService } from './bug-tracker/services/bugApi.service';
     BugTrackerComponent,
     BugStatsComponent,
     BugEditComponent,
-    ClosedCountPipe
+    ClosedCountPipe,
+    GreeterComponent
   ],
   imports: [
     BrowserModule,
