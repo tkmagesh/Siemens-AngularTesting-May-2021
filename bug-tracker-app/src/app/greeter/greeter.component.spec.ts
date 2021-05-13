@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing"
 import { GreeterComponent } from "./greeter.component"
 
-fdescribe("Greeter Component", () => {
+xdescribe("Greeter Component", () => {
     let fixture : ComponentFixture<GreeterComponent>;
     let greeterComponent : GreeterComponent;
 

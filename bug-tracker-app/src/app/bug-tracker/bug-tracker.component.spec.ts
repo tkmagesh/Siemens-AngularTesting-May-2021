@@ -1,24 +1,25 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { UtilsModule } from '../utils/utils.module';
-
+import { of } from 'rxjs';
 import { BugTrackerComponent } from './bug-tracker.component';
-import { BugEditComponent } from './components/bug-edit.component';
-import { BugStatsComponent } from './components/bug-stats.component';
-import { ClosedCountPipe } from './pipes/closedCount.pipe';
-import { BugApiService } from './services/bugApi.service';
+import { BugTrackerModule } from './bug-tracker.module';
 import { BugOperationsService } from './services/bugOperations.service';
+import { bugs as mockbugs } from './mock-data/bugs';
+import { Bug } from './models/bug';
+import { BugEditComponent } from './components/bug-edit.component';
+import { By } from '@angular/platform-browser';
 
-describe('BugTrackerComponent', () => {
+fdescribe('BugTrackerComponent', () => {
   let component: BugTrackerComponent;
   let fixture: ComponentFixture<BugTrackerComponent>;
 
   beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [ BugTrackerComponent, BugStatsComponent, BugEditComponent, ClosedCountPipe ],
-        imports : [HttpClientModule, UtilsModule, CommonModule],
-        providers: [BugOperationsService, BugApiService]
+        imports : [
+          BugTrackerModule
+        ],
+        providers: [
+          
+        ]
       })
       .compileComponents()
       .then(() => {
@@ -32,4 +33,32 @@ describe('BugTrackerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should populate the bugs when initialized', () => {
+    let bugOperationSpy : BugOperationsService = TestBed.inject(BugOperationsService);
+    spyOn(bugOperationSpy, "getAll").and.returnValue(of(mockbugs));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(component.bugs.length).toBe(3)
+  })
+
+  it('should populate the bugs when initialized', () => {
+    let bugOperationSpy : BugOperationsService = TestBed.inject(BugOperationsService);
+    spyOn(bugOperationSpy, "getAll").and.returnValue(of(mockbugs));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(component.bugs.length).toBe(3)
+  });
+
+  it('should add the new bug when the bugEditcomponents emits the event', () => {
+    let bugOperationSpy : BugOperationsService = TestBed.inject(BugOperationsService);
+    spyOn(bugOperationSpy, "getAll").and.returnValue(of([]));
+    component.ngOnInit();
+    fixture.detectChanges();
+    const el = fixture.debugElement;
+    const bugEditComponent : BugEditComponent = el.query(By.directive(BugEditComponent)).componentInstance;
+    bugEditComponent.created.emit({ id : 100, name : 'Dummy Bug', isClosed : false, createdAt : new Date()});
+    expect(component.bugs.length).toBe(1);
+  })
+
 });

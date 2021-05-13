@@ -6,38 +6,22 @@ import { HttpClientModule } from '@angular/common/http';
 
 /* Components */
 import { AppComponent } from './app.component';
-import { BugTrackerComponent } from './bug-tracker/bug-tracker.component';
-import { BugEditComponent } from './bug-tracker/components/bug-edit.component';
-import { BugStatsComponent } from './bug-tracker/components/bug-stats.component';
-
-/* Pipes */
-import { ClosedCountPipe } from './bug-tracker/pipes/closedCount.pipe';
-
-/* Services */
-import { BugOperationsService } from './bug-tracker/services/bugOperations.service';
-import { BugStorageService } from './bug-tracker/services/bugStorage.service';
-import { BugApiService } from './bug-tracker/services/bugApi.service';
 import { GreeterComponent } from './greeter/greeter.component';
+import { BugTrackerModule } from './bug-tracker/bug-tracker.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BugTrackerComponent,
-    BugStatsComponent,
-    BugEditComponent,
-    ClosedCountPipe,
     GreeterComponent
   ],
   imports: [
     BrowserModule,
     UtilsModule,
-    HttpClientModule
+    HttpClientModule,
+    BugTrackerModule
   ],
   providers: [
-    BugOperationsService,
-    BugStorageService,
-    BugApiService
   ],
   bootstrap: [AppComponent]
 })
