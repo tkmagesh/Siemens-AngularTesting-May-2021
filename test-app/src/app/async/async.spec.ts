@@ -1,4 +1,6 @@
 import { fakeAsync, flush, flushMicrotasks, tick } from "@angular/core/testing";
+import { of } from "rxjs";
+import { delay } from 'rxjs/operators'
 
 fdescribe("Async Operations", () => {
     function addSync(x,y){
@@ -137,5 +139,19 @@ fdescribe("Async Operations", () => {
         //flush(); //=> waits for all the macrotasks to be completed
         tick(500)
         expect(counter).toBe(14);
-    }))
+    }));
+
+    it('async testing of observables', fakeAsync(() => {
+        let test = false;
+
+        const test$ = of(test).pipe(delay(2000))
+
+        test$.subscribe(() => {
+            test = true;
+        });
+
+        tick(2000);
+
+        expect(test).toBeTrue();
+    } ))
 })
